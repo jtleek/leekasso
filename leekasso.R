@@ -37,7 +37,7 @@ leekassoAccuracy <- function(y,x,x2){
   leekX = t(x[index,])
   leekX2 = t(x2[index,])
   colnames(leekX) = colnames(leekX2) = paste("Column",1:10)
-  lm1 = lm(y ~ leekX)
+  lm1 = lm(y ~ ., data = as.data.frame(leekX)) 
   p2 = predict.lm(lm1,as.data.frame(leekX2))
   return(mean((p2 > 0.5) == y))
 }
